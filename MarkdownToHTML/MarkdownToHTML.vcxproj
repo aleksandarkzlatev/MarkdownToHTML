@@ -127,6 +127,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Nodes\BlcokNodes\ListNode\ListNode.cpp" />
+    <ClCompile Include="Nodes\BlcokNodes\ListItemNode\ListItemNode.cpp" />
+    <ClCompile Include="Nodes\BlcokNodes\HorizontalRuleNode\HorizontalRuleNode.cpp" />
+    <ClCompile Include="Nodes\BlcokNodes\HeaderNode\HeaderNode.cpp" />
     <ClCompile Include="MarkdownToHTML.cpp" />
     <ClCompile Include="Nodes\BlcokNodes\BlockNode.cpp" />
     <ClCompile Include="Nodes\InlineNodes\BlockNode\BoldNode.cpp" />
@@ -136,8 +140,13 @@
     <ClCompile Include="Nodes\InlineNodes\StrikeNode\StrikeNode.cpp" />
     <ClCompile Include="Nodes\InlineNodes\TextNode\TextNode.cpp" />
     <ClCompile Include="Nodes\Node.cpp" />
+    <ClCompile Include="Nodes\BlcokNodes\ParagraphNode\ParagraphNode.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Nodes\BlcokNodes\ListNode\ListNode.h" />
+    <ClInclude Include="Nodes\BlcokNodes\ListItemNode\ListItemNode.h" />
+    <ClInclude Include="Nodes\BlcokNodes\HorizontalRuleNode\HorizontalRuleNode.h" />
+    <ClInclude Include="Nodes\BlcokNodes\HeaderNode\HeaderNode.h" />
     <ClInclude Include="Nodes\BlcokNodes\BlockNode.h" />
     <ClInclude Include="Nodes\InlineNodes\BlockNode\BoldNode.h" />
     <ClInclude Include="Nodes\InlineNodes\CodeNode\CodeNode.h" />
@@ -146,6 +155,7 @@
     <ClInclude Include="Nodes\InlineNodes\StrikeNode\StrikeNode.h" />
     <ClInclude Include="Nodes\InlineNodes\TextNode\TextNode.h" />
     <ClInclude Include="Nodes\Node.h" />
+    <ClInclude Include="Nodes\BlcokNodes\ParagraphNode\ParagraphNode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
