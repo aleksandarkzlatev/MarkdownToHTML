@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="MarkdownToHTML/MarkdownToHTML.vcxproj" Id="72252758-4951-4a17-a121-2874f12b84be" />
+</Solution>
