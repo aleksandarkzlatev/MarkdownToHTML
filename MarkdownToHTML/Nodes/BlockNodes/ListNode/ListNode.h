@@ -5,12 +5,18 @@
 class ListNode : public BlockNode
 {
 	bool ordered;
-	vector<unique_ptr<ListItemNode>> items;
+	vector<ListItemNode*> items;
 public:
 	ListNode(bool ordered) : ordered(ordered) {}
-	void addItem(unique_ptr<ListItemNode> item);
+	ListNode(const ListNode& other);
+	ListNode& operator=(const ListNode& other);
+	~ListNode();
+
+	void addItem(const ListItemNode* item);
 	string toHTML() const override;
 	void print(ostream& os, size_t indent = 0) const override;
 	string getType() const override { return "List"; }
+
+	virtual Node* clone() const override { return new ListNode(*this); }
 };
 

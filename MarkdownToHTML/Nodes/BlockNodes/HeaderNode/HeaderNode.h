@@ -5,12 +5,19 @@
 class HeaderNode : public BlockNode
 {
 	int level;
-	vector<unique_ptr<InlineNode>> content;
+	vector<InlineNode*> content;
 public:
 	HeaderNode(int level);
-	void addInLine(unique_ptr<InlineNode> node);
+
+	HeaderNode(const HeaderNode& other);
+	HeaderNode& operator=(const HeaderNode& other);
+	~HeaderNode();
+
+	void addInLine(const InlineNode* node);
 	string toHTML() const override;
 	void print(ostream& os, size_t indent = 0) const override;
 	string getType() const override { return "Header"; }
+
+	virtual Node* clone() const override { return new HeaderNode(*this); }
 };
 

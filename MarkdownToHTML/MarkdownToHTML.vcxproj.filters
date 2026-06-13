@@ -36,25 +36,31 @@
     <ClCompile Include="Nodes\InlineNodes\CodeNode\CodeNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Nodes\InlineNodes\BlockNode\BoldNode.cpp">
+    <ClCompile Include="Nodes\InlineNodes\BoldNode\BoldNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Nodes\BlcokNodes\BlockNode.cpp">
+    <ClCompile Include="Nodes\BlockNodes\BlockNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Nodes\BlcokNodes\ParagraphNode\ParagraphNode.cpp">
+    <ClCompile Include="Nodes\BlockNodes\ParagraphNode\ParagraphNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Nodes\BlcokNodes\HeaderNode\HeaderNode.cpp">
+    <ClCompile Include="Nodes\BlockNodes\HeaderNode\HeaderNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Nodes\BlcokNodes\HorizontalRuleNode\HorizontalRuleNode.cpp">
+    <ClCompile Include="Nodes\BlockNodes\HorizontalRuleNode\HorizontalRuleNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Nodes\BlcokNodes\ListItemNode\ListItemNode.cpp">
+    <ClCompile Include="Nodes\BlockNodes\ListItemNode\ListItemNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Nodes\BlcokNodes\ListNode\ListNode.cpp">
+    <ClCompile Include="Nodes\BlockNodes\ListNode\ListNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Nodes\Document\Document.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Parser\Parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -77,25 +83,31 @@
     <ClInclude Include="Nodes\InlineNodes\CodeNode\CodeNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Nodes\InlineNodes\BlockNode\BoldNode.h">
+    <ClInclude Include="Nodes\InlineNodes\BoldNode\BoldNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Nodes\BlcokNodes\BlockNode.h">
+    <ClInclude Include="Nodes\BlockNodes\BlockNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Nodes\BlcokNodes\ParagraphNode\ParagraphNode.h">
+    <ClInclude Include="Nodes\BlockNodes\ParagraphNode\ParagraphNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Nodes\BlcokNodes\HeaderNode\HeaderNode.h">
+    <ClInclude Include="Nodes\BlockNodes\HeaderNode\HeaderNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Nodes\BlcokNodes\HorizontalRuleNode\HorizontalRuleNode.h">
+    <ClInclude Include="Nodes\BlockNodes\HorizontalRuleNode\HorizontalRuleNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Nodes\BlcokNodes\ListItemNode\ListItemNode.h">
+    <ClInclude Include="Nodes\BlockNodes\ListItemNode\ListItemNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Nodes\BlcokNodes\ListNode\ListNode.h">
+    <ClInclude Include="Nodes\BlockNodes\ListNode\ListNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Document\Document.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser\Parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -9,5 +9,8 @@ public:
 	string toHTML() const override;
 	void print(ostream& os, size_t indent = 0) const override;
 	string getType() const override { return "Code"; }
+
+	virtual Node* clone() const override { return new CodeNode(*this); }
+
 };
 

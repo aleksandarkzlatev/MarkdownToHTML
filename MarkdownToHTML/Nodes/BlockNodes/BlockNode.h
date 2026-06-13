@@ -3,5 +3,6 @@
 
 class BlockNode : public Node
 {
+
 };
 

@@ -19,5 +19,7 @@ public:
 	virtual string getType() const = 0;
 protected:
 	void printIndent(ostream& os, size_t indent) const;
+public:
+	virtual Node* clone() const = 0;
 };
 

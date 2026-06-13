@@ -3,12 +3,19 @@
 
 class ItalicNode : public InlineNode
 {
-	vector<unique_ptr<InlineNode>> children;
+	vector<InlineNode*> children;
 
 public:
-	void addChild(unique_ptr<InlineNode> child);
+	ItalicNode() = default;
+	ItalicNode(const ItalicNode& other);
+	ItalicNode& operator=(const ItalicNode& other);
+	~ItalicNode();
+
+	void addChild(const InlineNode* child);
 	string toHTML() const override;
 	void print(ostream& os, size_t indent = 0) const override;
 	string getType() const override { return "Italic"; }
+
+	virtual Node* clone() const override { return new ItalicNode(*this); }
 };
 

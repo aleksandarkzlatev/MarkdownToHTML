@@ -1,13 +1,13 @@
-#include "ItalicNode.h"
+#include "BoldNode.h"
 
-ItalicNode::ItalicNode(const ItalicNode& other)
+BoldNode::BoldNode(const BoldNode& other)
 {
 	for (const InlineNode* child : other.children) {
 		children.push_back(dynamic_cast<InlineNode*>(child->clone()));
 	}
 }
 
-ItalicNode& ItalicNode::operator=(const ItalicNode& other)
+BoldNode& BoldNode::operator=(const BoldNode& other)
 {
 	if (this != &other)
 	{
@@ -18,38 +18,38 @@ ItalicNode& ItalicNode::operator=(const ItalicNode& other)
 		}
 	}
 	return *this;
-
 }
 
-ItalicNode::~ItalicNode()
+BoldNode::~BoldNode()
 {
 	for (InlineNode* child : children) {
 		delete child;
 	}
 }
 
-void ItalicNode::addChild(const InlineNode* child)
+void BoldNode::addChild(const InlineNode* child)
 {
+    // making sure that we dont copy the data but "move" it
     children.push_back(dynamic_cast<InlineNode*>(child->clone()));
 }
 
-string ItalicNode::toHTML() const
+string BoldNode::toHTML() const
 {
-    string result = "<i>";
-
+    string result = "<b>";
+    
     for (const InlineNode* child : children) {
         result += child->toHTML();
     }
-
-    result += "</i>";
+    result += "</b>";
 
     return result;
 }
 
-void ItalicNode::print(ostream& os, size_t indent) const
+void BoldNode::print(ostream& os, size_t indent) const
 {
     printIndent(os, indent);
-    os << "ItalicNode\n";
+    os << "BoldNode\n";
+
     for (const InlineNode* child : children) {
         child->print(os, indent + 1);
     }
