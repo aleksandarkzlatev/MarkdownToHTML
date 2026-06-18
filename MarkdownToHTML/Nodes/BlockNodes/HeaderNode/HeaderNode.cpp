@@ -1,7 +1,8 @@
 #include "HeaderNode.h"
 
-HeaderNode::HeaderNode(int level)
+HeaderNode::HeaderNode(size_t level)
 {
+	if (level > 6) throw invalid_argument("Header level must be between 1 and 6");
     this->level = level;
 }
 

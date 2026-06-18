@@ -2,8 +2,8 @@
 
 BoldNode::BoldNode(const BoldNode& other)
 {
-	for (const InlineNode* child : other.children) {
-		children.push_back(dynamic_cast<InlineNode*>(child->clone()));
+	for (const InlineNode* node : other.nodes) {
+		nodes.push_back(dynamic_cast<InlineNode*>(node->clone()));
 	}
 }
 
@@ -11,10 +11,10 @@ BoldNode& BoldNode::operator=(const BoldNode& other)
 {
 	if (this != &other)
 	{
-		for (InlineNode* child : children) delete child;
-		children.clear();
-		for (const InlineNode* child : other.children) {
-			children.push_back(dynamic_cast<InlineNode*>(child->clone()));
+		for (InlineNode* node : nodes) delete node;
+		nodes.clear();
+		for (const InlineNode* node : other.nodes) {
+			nodes.push_back(dynamic_cast<InlineNode*>(node->clone()));
 		}
 	}
 	return *this;
@@ -22,23 +22,22 @@ BoldNode& BoldNode::operator=(const BoldNode& other)
 
 BoldNode::~BoldNode()
 {
-	for (InlineNode* child : children) {
-		delete child;
+	for (InlineNode* node : nodes) {
+		delete node;
 	}
 }
 
-void BoldNode::addChild(const InlineNode* child)
+void BoldNode::addNode(const InlineNode* node)
 {
-    // making sure that we dont copy the data but "move" it
-    children.push_back(dynamic_cast<InlineNode*>(child->clone()));
+	nodes.push_back(dynamic_cast<InlineNode*>(node->clone()));
 }
 
 string BoldNode::toHTML() const
 {
     string result = "<b>";
     
-    for (const InlineNode* child : children) {
-        result += child->toHTML();
+    for (const InlineNode* node : nodes) {
+        result += node->toHTML();
     }
     result += "</b>";
 
@@ -50,7 +49,7 @@ void BoldNode::print(ostream& os, size_t indent) const
     printIndent(os, indent);
     os << "BoldNode\n";
 
-    for (const InlineNode* child : children) {
-        child->print(os, indent + 1);
+    for (const InlineNode* node : nodes) {
+		node->print(os, indent + 1);
     }
 }

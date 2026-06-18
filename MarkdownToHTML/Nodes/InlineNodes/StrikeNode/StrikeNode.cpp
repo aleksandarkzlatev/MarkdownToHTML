@@ -2,8 +2,8 @@
 
 StrikeNode::StrikeNode(const StrikeNode& other)
 {
-	for (const InlineNode* child : other.children) {
-		children.push_back(dynamic_cast<InlineNode*>(child->clone()));
+	for (const InlineNode* node : other.nodes) {
+		nodes.push_back(dynamic_cast<InlineNode*>(node->clone()));
 	}
 }
 
@@ -11,10 +11,10 @@ StrikeNode& StrikeNode::operator=(const StrikeNode& other)
 {
 	if (this != &other)
 	{
-		for (InlineNode* child : children) delete child;
-		children.clear();
-		for (const InlineNode* child : other.children) {
-			children.push_back(dynamic_cast<InlineNode*>(child->clone()));
+		for (InlineNode* node : nodes) delete node;
+		nodes.clear();
+		for (const InlineNode* node : other.nodes) {
+			nodes.push_back(dynamic_cast<InlineNode*>(node->clone()));
 		}
 	}
 	return *this;
@@ -23,22 +23,22 @@ StrikeNode& StrikeNode::operator=(const StrikeNode& other)
 
 StrikeNode::~StrikeNode()
 {
-	for (InlineNode* child : children) {
-		delete child;
+	for (InlineNode* node : nodes) {
+		delete node;
 	}
 }
 
-void StrikeNode::addChild(const InlineNode* child)
+void StrikeNode::addNode(const InlineNode* node)
 {
-    children.push_back(dynamic_cast<InlineNode*>(child->clone()));
+    nodes.push_back(dynamic_cast<InlineNode*>(node->clone()));
 }
 
 string StrikeNode::toHTML() const
 {
     string result = "<s>";
 
-    for (const InlineNode* child : children) {
-        result += child->toHTML();
+    for (const InlineNode* node : nodes) {
+        result += node->toHTML();
     }
 
     result += "</s>";
@@ -51,7 +51,7 @@ void StrikeNode::print(ostream& os, size_t indent) const
     printIndent(os, indent);
     os << "StrikeNode\n";
 
-    for (const InlineNode* child : children) {
-        child->print(os, indent + 1);
+    for (const InlineNode* node : nodes) {
+        node->print(os, indent + 1);
     }
 }

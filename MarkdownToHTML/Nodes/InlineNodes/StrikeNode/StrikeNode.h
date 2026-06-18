@@ -3,14 +3,14 @@
 
 class StrikeNode : public InlineNode
 {
-	vector<InlineNode*> children;
+	vector<InlineNode*> nodes;
 public:
 	StrikeNode() = default;
 	StrikeNode(const StrikeNode& other);
 	StrikeNode& operator=(const StrikeNode& other);
 	~StrikeNode();
 
-	void addChild(const InlineNode* child);
+	void addNode(const InlineNode* node);
 	string toHTML() const override;
 	void print(ostream& os, size_t indent = 0) const override;
 	string getType() const override { return "Strike"; }

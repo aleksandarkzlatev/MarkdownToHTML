@@ -127,6 +127,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Parser\Parser.cpp" />
+    <ClCompile Include="Parser\InlineParser\InlineParser.cpp" />
+    <ClCompile Include="Parser\BlockParser\BlockParser.cpp" />
     <ClCompile Include="Nodes\Document\Document.cpp" />
     <ClCompile Include="Nodes\BlockNodes\ListNode\ListNode.cpp" />
     <ClCompile Include="Nodes\BlockNodes\ListItemNode\ListItemNode.cpp" />
@@ -142,9 +145,11 @@
     <ClCompile Include="Nodes\InlineNodes\TextNode\TextNode.cpp" />
     <ClCompile Include="Nodes\Node.cpp" />
     <ClCompile Include="Nodes\BlockNodes\ParagraphNode\ParagraphNode.cpp" />
-    <ClCompile Include="Parser\Parser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Parser\Parser.h" />
+    <ClInclude Include="Parser\InlineParser\InlineParser.h" />
+    <ClInclude Include="Parser\BlockParser\BlockParser.h" />
     <ClInclude Include="Nodes\Document\Document.h" />
     <ClInclude Include="Nodes\BlockNodes\ListNode\ListNode.h" />
     <ClInclude Include="Nodes\BlockNodes\ListItemNode\ListItemNode.h" />
@@ -159,7 +164,6 @@
     <ClInclude Include="Nodes\InlineNodes\TextNode\TextNode.h" />
     <ClInclude Include="Nodes\Node.h" />
     <ClInclude Include="Nodes\BlockNodes\ParagraphNode\ParagraphNode.h" />
-    <ClInclude Include="Parser\Parser.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

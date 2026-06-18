@@ -3,7 +3,7 @@
 
 class ItalicNode : public InlineNode
 {
-	vector<InlineNode*> children;
+	vector<InlineNode*> nodes;
 
 public:
 	ItalicNode() = default;
@@ -11,7 +11,7 @@ public:
 	ItalicNode& operator=(const ItalicNode& other);
 	~ItalicNode();
 
-	void addChild(const InlineNode* child);
+	void addNode(const InlineNode* node);
 	string toHTML() const override;
 	void print(ostream& os, size_t indent = 0) const override;
 	string getType() const override { return "Italic"; }

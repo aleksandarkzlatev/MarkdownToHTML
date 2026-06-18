@@ -1,13 +1,14 @@
 #pragma once
 #include "../BlockNode.h"
 #include"../../InlineNodes/InlineNode.h"
+#include <exception>
 
 class HeaderNode : public BlockNode
 {
-	int level;
+	size_t level;
 	vector<InlineNode*> content;
 public:
-	HeaderNode(int level);
+	HeaderNode(size_t level);
 
 	HeaderNode(const HeaderNode& other);
 	HeaderNode& operator=(const HeaderNode& other);
