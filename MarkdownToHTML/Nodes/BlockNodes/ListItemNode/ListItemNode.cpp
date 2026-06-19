@@ -54,3 +54,8 @@ void ListItemNode::print(ostream& os, size_t indent) const
 		node->print(os, indent + 1);
 	}
 }
+
+void ListItemNode::collectStatistics(Statistics& stats) const
+{
+	for (size_t i = 0; i < content.size(); i++) content[i]->collectStatistics(stats);
+}

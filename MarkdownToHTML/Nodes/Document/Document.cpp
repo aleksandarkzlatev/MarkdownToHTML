@@ -52,3 +52,12 @@ void Document::print(ostream& os) const
 		block->print(os, 1);
 	}
 }
+
+Statistics Document::getStatistics() const
+{
+	Statistics stats;
+
+	for (size_t i = 0; i < blocks.size(); i++) blocks[i]->collectStatistics(stats);
+
+	return stats;
+}

@@ -61,3 +61,13 @@ void ListNode::print(ostream& os, size_t indent) const
 		item->print(os, indent + 1);
 	}
 }
+
+void ListNode::collectStatistics(Statistics& stats) const
+{
+	if (ordered) stats.orderedLists++;
+	else stats.unorderedLists++;
+
+	stats.totalLines += items.size();
+
+	for (size_t i = 0; i < items.size(); i++) items[i]->collectStatistics(stats);
+}

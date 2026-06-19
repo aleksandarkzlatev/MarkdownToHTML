@@ -69,6 +69,12 @@
     <ClCompile Include="Parser\Parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CommandInterpreter\CommnadInterpreter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandInterpreter\Validator\Validator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nodes\Node.h">
@@ -120,6 +126,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Parser\Parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandInterpreter\CommnadInterpreter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandInterpreter\Validator\Validator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes\Statistics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

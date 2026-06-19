@@ -16,7 +16,10 @@ public:
 	string toHTML() const override;
 	void print(ostream& os, size_t indent = 0) const override;
 	string getType() const override { return "List"; }
+	bool isOrdered() const { return ordered; }
+	const vector<ListItemNode*>& getItems() const { return items; }
 
 	virtual Node* clone() const override { return new ListNode(*this); }
+	void collectStatistics(Statistics& stats) const;
 };
 

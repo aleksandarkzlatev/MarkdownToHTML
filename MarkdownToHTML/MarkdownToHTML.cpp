@@ -1,8 +1,10 @@
 #include <iostream>
-
-using namespace std;
+#include "CommandInterpreter/CommnadInterpreter.h"
 
 int main()
 {
+    CommnadInterpreter interpreter;
+    interpreter.run();
+
     return 0;
 }

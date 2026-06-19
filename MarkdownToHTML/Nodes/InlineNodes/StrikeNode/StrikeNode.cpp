@@ -55,3 +55,10 @@ void StrikeNode::print(ostream& os, size_t indent) const
         node->print(os, indent + 1);
     }
 }
+
+void StrikeNode::collectStatistics(Statistics& stats) const
+{
+	stats.strike++;
+
+	for (size_t i = 0; i < nodes.size(); i++) nodes[i]->collectStatistics(stats);
+}

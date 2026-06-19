@@ -1,6 +1,11 @@
 #include "BlockParser.h"
 
 
+bool BlockParser::isDigit(char c) const
+{
+    return c >= '0' && c <= '9';
+}
+
 bool BlockParser::isHeader(const string& line) const
 {
     return !line.empty() && line[0] == '#';
@@ -13,17 +18,15 @@ bool BlockParser::isHorizontalRule(const string& line) const
 
 bool BlockParser::isUnorderedListItem(const string& line) const
 {
-    return line.size() > 2 && (
-            (line[0] == '-' && line[1] == ' ') ||
-            (line[0] == '*' && line[1] == ' ')
-            );
+    return line.size() > 2 &&
+        ((line[0] == '-' || line[0] == '*') && line[1] == ' ');
 }
 
 bool BlockParser::isOrderedListItem(const std::string& line) const
 {
     size_t i = 0;
 
-    while (i < line.size() && isdigit(line[i])) i++;
+    while (i < line.size() && isDigit(line[i])) i++;
 
     return i > 0 && i + 1 < line.size() && line[i] == '.' && line[i + 1] == ' ';
 }

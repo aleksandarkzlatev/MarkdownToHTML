@@ -16,5 +16,6 @@ public:
 	string getType() const override { return "Bold"; }
 
 	virtual Node* clone() const override { return new BoldNode(*this); }
+	void collectStatistics(Statistics& stats) const;
 };
 

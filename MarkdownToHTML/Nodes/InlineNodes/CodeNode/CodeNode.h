@@ -11,6 +11,6 @@ public:
 	string getType() const override { return "Code"; }
 
 	virtual Node* clone() const override { return new CodeNode(*this); }
-
+	void collectStatistics(Statistics& stats) const;
 };
 

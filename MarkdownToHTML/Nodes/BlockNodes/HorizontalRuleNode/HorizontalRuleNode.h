@@ -11,5 +11,6 @@ public:
 	string getType() const { return "HorizontalRule"; }
 
 	virtual Node* clone() const override { return new HorizontalRuleNode(*this); }
+	void collectStatistics(Statistics& stats) const;
 };
 

@@ -12,6 +12,7 @@ class BlockParser
 	InlineParser inlineParser;
 	
 public:
+	bool isDigit(char c) const;
 	bool isHeader(const string& line) const;
 	bool isHorizontalRule(const string& line) const;
 	bool isUnorderedListItem(const string& line) const;

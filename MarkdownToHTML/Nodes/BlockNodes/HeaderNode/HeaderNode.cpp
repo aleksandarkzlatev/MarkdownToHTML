@@ -64,3 +64,19 @@ void HeaderNode::print(ostream& os, size_t indent) const
 		node->print(os, indent + 1);
 	}
 }
+
+void HeaderNode::collectStatistics(Statistics& stats) const
+{
+	stats.totalLines++;
+
+	switch (level) {
+	case 1: stats.h1++; break;
+	case 2: stats.h2++; break;
+	case 3: stats.h3++; break;
+	case 4: stats.h4++; break;
+	case 5: stats.h5++; break;
+	case 6: stats.h6++; break;
+	}
+
+	for (size_t i = 0; i < content.size(); i++) content[i]->collectStatistics(stats);
+}

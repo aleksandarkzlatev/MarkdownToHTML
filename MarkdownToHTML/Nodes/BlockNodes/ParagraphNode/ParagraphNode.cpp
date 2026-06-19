@@ -56,3 +56,11 @@ void ParagraphNode::print(ostream& os, size_t indent) const
 		node->print(os, indent + 1);
 	}
 }
+
+void ParagraphNode::collectStatistics(Statistics& stats) const
+{
+	stats.totalLines++;
+	stats.paragraphs++;
+
+	for (size_t i = 0; i < content.size(); i++) content[i]->collectStatistics(stats);
+}

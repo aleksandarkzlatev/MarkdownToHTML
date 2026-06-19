@@ -53,3 +53,10 @@ void BoldNode::print(ostream& os, size_t indent) const
 		node->print(os, indent + 1);
     }
 }
+
+void BoldNode::collectStatistics(Statistics& stats) const
+{
+	stats.bold++;
+
+	for (size_t i = 0; i < nodes.size(); i++) nodes[i]->collectStatistics(stats);
+}

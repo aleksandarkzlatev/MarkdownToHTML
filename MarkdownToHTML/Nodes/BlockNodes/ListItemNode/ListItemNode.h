@@ -17,5 +17,6 @@ public:
 	string getType() const override { return "ListItem"; }
 
 	virtual Node* clone() const override { return new ListItemNode(*this); }
+	void collectStatistics(Statistics& stats) const;
 };
 

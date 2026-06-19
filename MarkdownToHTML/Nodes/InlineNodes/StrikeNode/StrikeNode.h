@@ -16,5 +16,6 @@ public:
 	string getType() const override { return "Strike"; }
 
 	virtual Node* clone() const override { return new StrikeNode(*this); }
+	void collectStatistics(Statistics& stats) const;
 };
 

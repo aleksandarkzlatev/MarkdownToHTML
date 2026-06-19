@@ -15,3 +15,8 @@ void CodeNode::print(ostream& os, size_t indent) const
     printIndent(os, indent);
     os << "CodeNode: " << code << "\n";
 }
+
+void CodeNode::collectStatistics(Statistics& stats) const
+{
+    stats.code++;
+}

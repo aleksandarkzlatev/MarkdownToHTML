@@ -5,6 +5,8 @@
 #include <vector>
 #include <fstream>
 
+#include "Statistics.h"
+
 using namespace std;
 
 class Node
@@ -21,5 +23,7 @@ protected:
 	void printIndent(ostream& os, size_t indent) const;
 public:
 	virtual Node* clone() const = 0;
+
+	virtual void collectStatistics(Statistics& stats) const = 0;
 };
 

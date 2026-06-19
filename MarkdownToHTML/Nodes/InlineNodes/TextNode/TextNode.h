@@ -12,5 +12,6 @@ public:
 	string getType() const override { return "Text"; }
 
 	virtual Node* clone() const override { return new TextNode(*this); }
+	void collectStatistics(Statistics& stats) const;
 };
 

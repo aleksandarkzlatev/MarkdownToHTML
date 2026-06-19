@@ -17,5 +17,6 @@ public:
 	string getType() const override { return "Paragraph"; }
 
 	virtual Node* clone() const override { return new ParagraphNode(*this); }
+	void collectStatistics(Statistics& stats) const;
 };
 

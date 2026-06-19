@@ -54,3 +54,10 @@ void ItalicNode::print(ostream& os, size_t indent) const
         node->print(os, indent + 1);
     }
 }
+
+void ItalicNode::collectStatistics(Statistics& stats) const
+{
+	stats.italic++;
+
+	for (size_t i = 0; i < nodes.size(); i++) nodes[i]->collectStatistics(stats);
+}

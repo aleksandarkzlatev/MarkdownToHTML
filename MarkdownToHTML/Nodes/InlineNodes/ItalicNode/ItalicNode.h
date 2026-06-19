@@ -17,5 +17,6 @@ public:
 	string getType() const override { return "Italic"; }
 
 	virtual Node* clone() const override { return new ItalicNode(*this); }
+	void collectStatistics(Statistics& stats) const;
 };
 

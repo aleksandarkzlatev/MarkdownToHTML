@@ -20,5 +20,6 @@ public:
 	string getType() const override { return "Header"; }
 
 	virtual Node* clone() const override { return new HeaderNode(*this); }
+	void collectStatistics(Statistics& stats) const;
 };
 

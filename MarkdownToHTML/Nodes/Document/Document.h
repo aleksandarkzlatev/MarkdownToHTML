@@ -1,6 +1,6 @@
 #pragma once
-#include <vector>
 #include "../BlockNodes/BlockNode.h"
+#include "../Statistics.h"
 
 class Document
 {
@@ -19,5 +19,6 @@ public:
     void print(ostream& os) const;
 
 	Document* clone() const { return new Document(*this); }
+    Statistics getStatistics() const;
 };
 

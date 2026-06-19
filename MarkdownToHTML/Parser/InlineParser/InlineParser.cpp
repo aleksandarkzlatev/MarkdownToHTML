@@ -24,6 +24,7 @@ vector<InlineNode*> InlineParser::parseRange(const string& text, size_t start, s
             result.push_back(node);
 
             i = close + 1;
+            continue;
         }
 
         if (i + 2 < end && text.substr(i, 3) == "***") {
@@ -46,6 +47,7 @@ vector<InlineNode*> InlineParser::parseRange(const string& text, size_t start, s
 
 				result.push_back(italic);
 				i = close + 3;
+                continue;
             }
         }
 
@@ -66,6 +68,7 @@ vector<InlineNode*> InlineParser::parseRange(const string& text, size_t start, s
                 result.push_back(italic);
 
                 i = close + 2;
+                continue;
             }
         }
 
@@ -86,6 +89,7 @@ vector<InlineNode*> InlineParser::parseRange(const string& text, size_t start, s
                 result.push_back(bold);
 
                 i = close + 1;
+                continue;
             }
         }
 
@@ -106,6 +110,7 @@ vector<InlineNode*> InlineParser::parseRange(const string& text, size_t start, s
                 result.push_back(strike);
 
                 i = close + 1;
+                continue;
             }
         }
 
