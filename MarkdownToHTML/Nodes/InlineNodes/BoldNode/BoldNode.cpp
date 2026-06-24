@@ -27,9 +27,9 @@ BoldNode::~BoldNode()
 	}
 }
 
-void BoldNode::addNode(const InlineNode* node)
+void BoldNode::addNode(InlineNode* node)
 {
-	nodes.push_back(dynamic_cast<InlineNode*>(node->clone()));
+	nodes.push_back(node);
 }
 
 string BoldNode::toHTML() const

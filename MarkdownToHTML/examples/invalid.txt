@@ -1,0 +1,25 @@
+####### Wrong header
+
+#No space after hash
+
+*Unclosed bold
+
+**Unclosed italic
+
+***Both unclosed
+
+Paragraph with `unclosed code
+
+~unclosed strike
+
+- valid list item
+1. ordered item
+- mixed list type
+
+---
+
+---- invalid hr
+
+### Valid header
+
+Text with *bold and **italic* mismatch**

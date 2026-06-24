@@ -11,10 +11,9 @@ public:
 	ItalicNode& operator=(const ItalicNode& other);
 	~ItalicNode();
 
-	void addNode(const InlineNode* node);
+	void addNode(InlineNode* node);
 	string toHTML() const override;
 	void print(ostream& os, size_t indent = 0) const override;
-	string getType() const override { return "Italic"; }
 
 	virtual Node* clone() const override { return new ItalicNode(*this); }
 	void collectStatistics(Statistics& stats) const;

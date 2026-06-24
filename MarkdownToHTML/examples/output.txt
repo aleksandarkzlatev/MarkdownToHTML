@@ -1,0 +1,22 @@
+<h1><b>Vermilion</b> -> Slipknot, <i>2004</i></h1>
+<h2><i><b>6 Symbol mashup 7</b></i></h2>
+<p>Normal paragraph.</p>
+<p><b>Test2</b></p>
+<p><s></s>This won't be parsed<s></s></p>
+<p><s>Strikethrough</s></p>
+<p><code>Code block</code></p>
+<p>Paragraph with <b>bold</b>, <i>italic</i> and <i><b>both</b></i>.</p>
+<hr></hr>
+<ul><li>First unordered item</li><li>Second unordered item with <b>bold</b></li><li>Third unordered item with <i>italic</i></li></ul>
+<ol><li>First ordered item</li><li>Second ordered item</li><li>Third ordered item with <i><b>both</b></i></li></ol>
+<h3>Nested formatting</h3>
+<p><b>Bold with <i>italic inside</i></b></p>
+<p><i>Italic with <b>bold inside</b></i></p>
+<p><s>Strike with <b>bold</b> inside</s></p>
+<h4>More examples</h4>
+<p>Some <code>code</code> inside a paragraph.</p>
+<h5>Final section</h5>
+<p>Text only.</p>
+<h6>Last header</h6>
+<p><i><b>abc</b></i></p>
+<p><b>one <i>two <s>three</s> two</i> one</b></p>

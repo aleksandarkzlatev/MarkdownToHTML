@@ -28,9 +28,9 @@ StrikeNode::~StrikeNode()
 	}
 }
 
-void StrikeNode::addNode(const InlineNode* node)
+void StrikeNode::addNode(InlineNode* node)
 {
-    nodes.push_back(dynamic_cast<InlineNode*>(node->clone()));
+    nodes.push_back(node);
 }
 
 string StrikeNode::toHTML() const

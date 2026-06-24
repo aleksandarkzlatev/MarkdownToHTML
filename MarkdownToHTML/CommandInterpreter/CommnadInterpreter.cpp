@@ -22,12 +22,27 @@ vector<string> CommnadInterpreter::split(const string& str)
 
 void CommnadInterpreter::translate(const string& input, const string& output)
 {
-	Document doc = parser.parse(input);
+	ifstream checkFile(output);
+	if (checkFile.is_open()) {
+		checkFile.close();
+
+		cout << "File \"" << output << "\" already exists. Overwrite? (y/n): ";
+		string response;
+		getline(cin, response);
+
+		if (response != "y") {
+			cout << "Translation cancelled.\n";
+			return;
+		}
+	}
 
 	ofstream out(output);
 	if (!out) throw runtime_error("Cannot open output file");
+	
+	Document doc = parser.parse(input);
 
 	out << doc.toHTML();
+	out.close();
 
 	cout << "Translation successful.\n";
 }
@@ -41,7 +56,7 @@ void CommnadInterpreter::print(const string& input)
 void CommnadInterpreter::validate(const string& filename)
 {
 	Validator validator;
-	validator.valdateFile(filename);
+	validator.validateFile(filename);
 }
 
 void CommnadInterpreter::info(const string& input)
@@ -91,17 +106,32 @@ void CommnadInterpreter::run()
 		vector<string> args = split(command);
 
 		try {
-			if (args[0] == "translate") translate(args[1], args[2]);
-
-			else if (args[0] == "print") print(args[1]);
-
-			else if (args[0] == "validate") validate(args[1]);
-
-			else if (args[0] == "info") info(args[1]);
-
+			if (args[0] == "translate") {
+				if (args.size() != 3) throw logic_error("Invalid arguments given for translate");
+				translate(args[1], args[2]);
+			} 
+			else if (args[0] == "print") {
+				if (args.size() != 2) throw logic_error("Invalid arguments given for print");
+				print(args[1]);
+			} 
+			else if (args[0] == "validate") {
+				if (args.size() != 2) throw logic_error("Invalid arguments given for validate");
+				validate(args[1]);
+			} 
+			else if (args[0] == "info") {
+				if (args.size() != 2) throw logic_error("Invalid arguments given for info");
+				info(args[1]);
+			} 
 			else if (args[0] == "exit") break;
 
-			else cout << "Unknown command\n";
+			else {
+				cout << "Unknown command, valid commands:\n";
+				cout << "translate (input file) (output file); \n"<< 
+					"print (input file);\n" <<
+					"validate (input file);\n" <<
+					"info (input file);\n" <<
+				    "exit\n";
+			} 
 		}
 		catch (const exception& e) {
 			cout << e.what() << '\n';

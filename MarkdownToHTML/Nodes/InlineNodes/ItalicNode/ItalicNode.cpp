@@ -28,9 +28,9 @@ ItalicNode::~ItalicNode()
 	}
 }
 
-void ItalicNode::addNode(const InlineNode* node)
+void ItalicNode::addNode(InlineNode* node)
 {
-    nodes.push_back(dynamic_cast<InlineNode*>(node->clone()));
+	nodes.push_back(node);
 }
 
 string ItalicNode::toHTML() const

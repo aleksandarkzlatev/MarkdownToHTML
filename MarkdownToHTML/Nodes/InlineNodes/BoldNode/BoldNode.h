@@ -10,10 +10,9 @@ public:
 	BoldNode& operator=(const BoldNode& other);
 	~BoldNode();
 
-	void addNode(const InlineNode* node);
+	void addNode(InlineNode* node);
 	string toHTML() const override;
 	void print(ostream& os, size_t indent = 0) const override;
-	string getType() const override { return "Bold"; }
 
 	virtual Node* clone() const override { return new BoldNode(*this); }
 	void collectStatistics(Statistics& stats) const;

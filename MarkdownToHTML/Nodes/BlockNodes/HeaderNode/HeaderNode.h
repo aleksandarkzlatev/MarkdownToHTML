@@ -17,7 +17,6 @@ public:
 	void addInLine(const InlineNode* node);
 	string toHTML() const override;
 	void print(ostream& os, size_t indent = 0) const override;
-	string getType() const override { return "Header"; }
 
 	virtual Node* clone() const override { return new HeaderNode(*this); }
 	void collectStatistics(Statistics& stats) const;

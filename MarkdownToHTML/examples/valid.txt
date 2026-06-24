@@ -1,0 +1,46 @@
+# *Vermilion* -> Slipknot, **2004**
+
+## ***6 Symbol mashup 7***
+
+Normal paragraph.
+
+*Test2*
+
+~~This won't be parsed~~
+~Strikethrough~
+
+`Code block`
+
+Paragraph with *bold*, **italic** and ***both***.
+
+- - -
+
+- First unordered item
+- Second unordered item with *bold*
+- Third unordered item with **italic**
+
+1. First ordered item
+2. Second ordered item
+3. Third ordered item with ***both***
+
+### Nested formatting
+
+*Bold with **italic inside***
+
+**Italic with *bold inside***
+
+~Strike with *bold* inside~
+
+#### More examples
+
+Some `code` inside a paragraph.
+
+##### Final section
+
+Text only.
+
+###### Last header
+
+***abc***
+
+*one **two ~three~ two** one*

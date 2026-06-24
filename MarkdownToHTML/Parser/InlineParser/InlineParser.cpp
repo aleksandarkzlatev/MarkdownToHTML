@@ -1,138 +1,203 @@
 #include "InlineParser.h"
 
-vector<InlineNode*> InlineParser::parseRange(const string& text, size_t start, size_t end)
+string InlineParser::getMarkerAt(const string& text, size_t pos) const
+{
+    if (pos + 2 < text.size() && text.substr(pos, 3) == "***")
+        return "***";
+
+    if (pos + 1 < text.size() && text.substr(pos, 2) == "**")
+        return "**";
+
+    if (text[pos] == '*')
+        return "*";
+
+    if (text[pos] == '~')
+        return "~";
+
+    if (text[pos] == '`')
+        return "`";
+
+    return "";
+}
+
+bool InlineParser::markerMatches(const string& marker, MarkerType current) const
+{
+    switch (current)
+    {
+    case BOLD:
+        return marker == "*" || marker == "***";
+
+    case ITALIC:
+        return marker == "**" || marker == "***";
+
+    case BOTH:
+        return marker == "***";
+
+    case STRIKE:
+        return marker == "~";
+
+    default:
+        return false;
+    }
+}
+
+vector<InlineNode*> InlineParser::parseRange(const string& text, size_t& pos, MarkerType current)
 {
     vector<InlineNode*> result;
-    string plainText;
-    size_t i = start;
+    string plain;
 
-    while (i < end) {
-        if (text[i] == '`') {
-            size_t close = findClosing(text, i + 1, "`");
-            if (close == string::npos || close >= end) {
-                plainText += text[i];
-                i++;
-                continue;
+    while (pos < text.size())
+    {
+        string marker = getMarkerAt(text, pos);
+
+        if (current != NONE && markerMatches(marker, current))
+        {
+            if (!plain.empty())
+            {
+                result.push_back(new TextNode(plain));
+                plain.clear();
             }
 
-            if (!plainText.empty()) {
-                result.push_back(new TextNode(plainText));
-                plainText.clear();
+            pos += marker.size();
+            return result;
+        }
+
+        if (marker == "`")
+        {
+            if (!plain.empty())
+            {
+                result.push_back(new TextNode(plain));
+                plain.clear();
             }
 
-            CodeNode* node = new CodeNode(text.substr(i + 1, close - i - 1));
-            result.push_back(node);
+            pos++;
 
-            i = close + 1;
+            size_t start = pos;
+
+            while (pos < text.size() && text[pos] != '`')
+                pos++;
+
+            result.push_back(
+                new CodeNode(text.substr(start, pos - start)));
+
+            if (pos < text.size())
+                pos++;
+
             continue;
         }
 
-        if (i + 2 < end && text.substr(i, 3) == "***") {
-            size_t close = findClosing(text, i + 3, "***");
-            if (close != string::npos && close < end) {
-                if (!plainText.empty()) {
-                    result.push_back(new TextNode(plainText));
-                    plainText.clear();
-                }
-
-                ItalicNode* italic = new ItalicNode();
-                BoldNode* bold = new BoldNode();
-
-				vector<InlineNode*> nodes = parseRange(text, i + 3, close);
-
-                for (InlineNode* node : nodes) bold->addNode(node);
-                
-				italic->addNode(bold);
-
-
-				result.push_back(italic);
-				i = close + 3;
-                continue;
+        if (marker == "***")
+        {
+            if (!plain.empty())
+            {
+                result.push_back(new TextNode(plain));
+                plain.clear();
             }
+
+            if (current == BOLD)
+                pos += 1;
+            else if (current == ITALIC)
+                pos += 2;
+            else
+                pos += marker.size();
+
+            vector<InlineNode*> children =
+                parseRange(text, pos, BOTH);
+
+            BoldNode* bold = new BoldNode();
+
+            for (InlineNode* child : children)
+                bold->addNode(child);
+
+            ItalicNode* italic = new ItalicNode();
+            italic->addNode(bold);
+
+            result.push_back(italic);
+
+            continue;
         }
 
-        if (i + 1 < end && text.substr(i, 2) == "**") {
-            size_t close = findClosing(text, i + 2, "**");
-            if (close != string::npos && close < end) {
-                if(!plainText.empty()) {
-                    result.push_back(new TextNode(plainText));
-                    plainText.clear();
-                }
-
-                ItalicNode* italic = new ItalicNode();
-
-				vector<InlineNode*> nodes = parseRange(text, i + 2, close);
-
-                for (InlineNode* node : nodes) italic->addNode(node);
-
-                result.push_back(italic);
-
-                i = close + 2;
-                continue;
+        if (marker == "**")
+        {
+            if (!plain.empty())
+            {
+                result.push_back(new TextNode(plain));
+                plain.clear();
             }
+
+            pos += 2;
+
+            vector<InlineNode*> children =
+                parseRange(text, pos, ITALIC);
+
+            ItalicNode* italic = new ItalicNode();
+
+            for (InlineNode* child : children)
+                italic->addNode(child);
+
+            result.push_back(italic);
+
+            continue;
         }
 
-        if (text[i] == '*') {
-            size_t close = findClosing(text, i + 1, "*");
-            if (close != string::npos && close < end) {
-                if (!plainText.empty()) {
-                    result.push_back(new TextNode(plainText));
-                    plainText.clear();
-                }
-
-                BoldNode* bold = new BoldNode();
-
-                vector<InlineNode*> nodes = parseRange(text, i + 1, close);
-
-                for (InlineNode* node : nodes) bold->addNode(node);
-
-                result.push_back(bold);
-
-                i = close + 1;
-                continue;
+        if (marker == "*")
+        {
+            if (!plain.empty())
+            {
+                result.push_back(new TextNode(plain));
+                plain.clear();
             }
+
+            pos++;
+
+            vector<InlineNode*> children =
+                parseRange(text, pos, BOLD);
+
+            BoldNode* bold = new BoldNode();
+
+            for (InlineNode* child : children)
+                bold->addNode(child);
+
+            result.push_back(bold);
+
+            continue;
         }
 
-        if (text[i] == '~') {
-            size_t close = findClosing(text, i + 1, "~");
-            if (close != string::npos && close < end) {
-                if (!plainText.empty()) {
-                    result.push_back(new TextNode(plainText));
-                    plainText.clear();
-                }
-
-                StrikeNode* strike = new StrikeNode();
-
-                vector<InlineNode*> nodes = parseRange(text, i + 1, close);
-
-                for (InlineNode* node : nodes) strike->addNode(node);
-
-                result.push_back(strike);
-
-                i = close + 1;
-                continue;
+        if (marker == "~")
+        {
+            if (!plain.empty())
+            {
+                result.push_back(new TextNode(plain));
+                plain.clear();
             }
+
+            pos++;
+
+            vector<InlineNode*> children =
+                parseRange(text, pos, STRIKE);
+
+            StrikeNode* strike = new StrikeNode();
+
+            for (InlineNode* child : children)
+                strike->addNode(child);
+
+            result.push_back(strike);
+
+            continue;
         }
 
-        plainText += text[i];
-        i++;
+        plain += text[pos];
+        pos++;
     }
 
-    if (!plainText.empty())
-    {
-        result.push_back(
-            new TextNode(plainText));
-    }
+    if (!plain.empty())
+        result.push_back(new TextNode(plain));
 
     return result;
 }
 
-size_t InlineParser::findClosing(const string& text, size_t start, const string& marker)
-{
-    return text.find(marker, start);
-}
-
 vector<InlineNode*> InlineParser::parse(const string& text)
 {
-    return parseRange(text, 0, text.size());
+    size_t pos = 0;
+    return parseRange(text, pos, NONE);
 }

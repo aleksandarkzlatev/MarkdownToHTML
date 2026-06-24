@@ -7,6 +7,13 @@
 #include "../InlineParser/InlineParser.h"
 #include <fstream>
 
+/**
+ * @brief Клас за обработка на блоковите елементи в Markdown.
+ *
+ * BlockParser преобразува отделните редове на документа в
+ * съответните блокови възли от синтактичното дърво, като
+ * заглавия, параграфи, списъци и хоризонтални линии.
+ */
 class BlockParser
 {
 	InlineParser inlineParser;
@@ -21,6 +28,13 @@ public:
 	BlockNode* parseHeader(const string& line);
 	BlockNode* parseParagraph(const string& line);
 	BlockNode* parseHorizontalRule();
+	/**
+	 * @brief Парсва последователни елементи на списък.
+	 *
+	 * В зависимост от типа на първия елемент създава нареден
+	 * или ненареден списък и добавя всички последователни
+	 * елементи към него.
+	 */
 	ListNode* parseList(ifstream& file, const string& firstLine);
 };
 

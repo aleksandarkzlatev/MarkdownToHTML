@@ -40,7 +40,7 @@ BlockNode* BlockParser::parseHeader(const string& line)
     string content = line.substr(level + 1);
     vector<InlineNode*> inlines = inlineParser.parse(content);
 
-    for (const InlineNode* node : inlines) {
+    for (InlineNode* node : inlines) {
         header->addInLine(node);
     }
 
@@ -53,7 +53,7 @@ BlockNode* BlockParser::parseParagraph(const string& line)
 
     vector<InlineNode*> inlines = inlineParser.parse(line);
 
-    for (const InlineNode* node : inlines) {
+    for (InlineNode* node : inlines) {
         paragraph->addInLine(node);
     }
 
@@ -83,7 +83,7 @@ ListNode* BlockParser::parseList(ifstream& file, const string& firstLine)
 
         vector<InlineNode*> inlines = inlineParser.parse(content);
 
-        for (const InlineNode* inlineNode : inlines) item->addInLine(inlineNode);
+        for (InlineNode* inlineNode : inlines) item->addInLine(inlineNode);
 
         list->addItem(item);
 
@@ -93,6 +93,7 @@ ListNode* BlockParser::parseList(ifstream& file, const string& firstLine)
         bool sameType = ordered ? isOrderedListItem(current) : isUnorderedListItem(current);
 
         if (!sameType) {
+            file.clear();
             file.seekg(pos);
             break;
         }
